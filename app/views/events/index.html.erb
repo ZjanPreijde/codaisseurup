@@ -1,0 +1,41 @@
+<div class="row">
+
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="panel panel-primary">
+
+      <div class="panel-heading">
+        Your Events
+      </div>
+      <div class="panel-body">
+        <% @events.each do |event| %>
+          <div class="col-md-6">
+            <h4><%= event.name %></h4>
+            <p><%= event.description %></p>
+            <p>
+              Location :
+              <%= event.location %>
+              , Price :
+              <%= event.price %>
+              , Capacity :
+              <%= event.capacity %>
+            </p>
+            <p>
+              Starts at :
+              <%= event.starts_at %>
+              , Starts at :
+              <%= event.ends_at %>
+            </p>
+            <p>
+              <%= link_to "View", event, class: "btn btn-default" %>
+            </p>
+          </div>
+          <!-- <div class="col-md-3 right"> -->
+          <!-- </div> -->
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  <%= link_to "Add new event", new_event_path, class: "btn btn-success" %>
+</div>

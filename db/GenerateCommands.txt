@@ -1,0 +1,23 @@
+rails generate model Event name:string description:text location:string
+  price:decimal capacity:integer includes_food:boolean includes_drinks:boolean
+  starts_at:datetime ends_at:datetime active:boolean
+- is there way to include defaults and
+rails generate model Test desc:string number:decimal
+- {,}: shell does funny stuff with multiple parameters in curly braces
+  therefore decimal '{precision,scale}' between quotes :
+rails generate model Test desc:string{30} 'number:decimal{10,2}'
+rails generate model Test desc:string 'external_id:decimal:index
+rails generate model Test desc:string 'external_id:decimal:uniq
+
+- can't find a way yet to pass a default value to the model generator
+
+t.string :name
+t.text :description
+t.string :location
+t.decimal :price :precision =>5 :scale => 2
+t.integer :capacity
+t.boolean :includes_food
+t.boolean :includes_drinks
+t.datetime :starts_at
+t.datetime :ends_at
+t.boolean :active

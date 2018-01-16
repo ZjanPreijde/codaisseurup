@@ -1,2 +1,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-default .navbar-nav > li {
+  margin: 0 5px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  background-color: lightgrey;
+  border-radius: 10px;
+}
+
+.navbar-default .navbar-nav > li > a:active {
+  color: pink;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: red;
+  background-color: pink;
+  font-weight: bold;
+}

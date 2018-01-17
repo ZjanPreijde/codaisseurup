@@ -3,11 +3,11 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @profile = Profile.find(params[@user])
   end
 
   def full_name
     return profile.full_name if profile?
-
     email
   end
 

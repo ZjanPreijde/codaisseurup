@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :categories
-  THRESHOLD_LARGE_EVENT_EXCLUDE = 100
+  # An event equal to or greater than thresh hold is considered large
+  THRESHOLD_LARGE_EVENT_INCLUDE = 100
 
     # 'has_defaults' gem file, allows use of following :
     # has_defaults :name => "Enter name here", :description => "Enter description here"
@@ -25,7 +26,7 @@ class Event < ApplicationRecord
   end
 
   def large_crowd?
-    capacity > THRESHOLD_LARGE_EVENT_EXCLUDE
+    capacity >= THRESHOLD_LARGE_EVENT_INCLUDE
   end
 
   def is_bargain?
@@ -54,6 +55,6 @@ class Event < ApplicationRecord
   end
 
   def get_threshold_large_event
-    THRESHOLD_LARGE_EVENT_EXCLUDE
+    THRESHOLD_LARGE_EVENT_INCLUDE
   end
 end

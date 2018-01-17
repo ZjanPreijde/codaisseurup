@@ -1,4 +1,4 @@
-class CreateJoinTableRoomTheme < ActiveRecord::Migration[5.1]
+class CreateJoinTableEventCategory < ActiveRecord::Migration[5.1]
   def change
     create_join_table :events, :categories do |t|
       t.index [:event_id, :category_id]

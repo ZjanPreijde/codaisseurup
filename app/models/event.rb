@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :categories
+  THRESHOLD_LARGE_EVENT_EXCLUDE = 100
 
     # 'has_defaults' gem file, allows use of following :
     # has_defaults :name => "Enter name here", :description => "Enter description here"
@@ -18,7 +19,15 @@ class Event < ApplicationRecord
     #   selft.includes_drinks = false
     #   self.active = true
   end
-  
+
+  def self.order_busy_desc
+#    true
+  end
+
+  def large_crowd?
+    capacity > THRESHOLD_LARGE_EVENT_EXCLUDE
+  end
+
   def is_bargain?
       price < 50
   end
@@ -42,5 +51,9 @@ class Event < ApplicationRecord
 
   def one_day_event?
     return self.starts_at.to_date == self.ends_at.to_date
+  end
+
+  def get_threshold_large_event
+    THRESHOLD_LARGE_EVENT_EXCLUDE
   end
 end

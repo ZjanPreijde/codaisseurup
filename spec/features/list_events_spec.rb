@@ -1,4 +1,4 @@
-# spec/features/list_events_spec.rb
+# rspec spec/features/list_events_spec.rb
 
 require 'rails_helper'
 

@@ -42,7 +42,6 @@ RSpec.describe Event, type: :model do
       starts_at: 1.days.from_now, ends_at: 3.days.from_now }
     let(:border_event)    { create :event, capacity: 100,
       starts_at: 1.days.from_now, ends_at: 3.days.from_now }
-
     it "returns true if the capacity is larger than thresh hold" do
       expect(busy_event.large_crowd?).to eq(true)
       expect(non_busy_event.large_crowd?).to eq(false)

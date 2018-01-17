@@ -14,8 +14,7 @@ class Event < ApplicationRecord
 
   validate :validate_dates
   def validate_dates
-    time_between = ends_at.strftime("%s").to_i - starts_at.strftime("%s").to_i
-    if time_between < (24*60*60)
+    if ends_at - starts_at < (24*60*60)
       errors.add(:ends_at, " : End time must be at least 24 hours after start time")
     end
   end

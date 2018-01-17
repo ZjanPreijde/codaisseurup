@@ -22,18 +22,18 @@ class Event < ApplicationRecord
   after_initialize :set_default_values
   def set_default_values
     # Set defaults for new record
-    self.name             = "Enter name here" if self.name.nil?
-    self.description      = "Enter description here" if self.description.nil?
-    self.price            = 0 if self.price.nil?
-    self.includes_food    = false if self.includes_food.nil?
-    self.includes_drinks  = false if self.includes_drinks.nil?
-    self.starts_at        = 1.days.from_now if self.starts_at.nil?
-    self.ends_at          = 5.days.from_now if self.ends_at.nil?
-    self.active           = true if self.active.nil?
+    self.name             = "Enter name here"         if self.name.nil?
+    self.description      = "Enter description here"  if self.description.nil?
+    self.price            = 0                         if self.price.nil?
+    self.includes_food    = false                     if self.includes_food.nil?
+    self.includes_drinks  = false                     if self.includes_drinks.nil?
+    self.starts_at        = 1.days.from_now           if self.starts_at.nil?
+    self.ends_at          = 5.days.from_now           if self.ends_at.nil?
+    self.active           = true                      if self.active.nil?
   end
 
-  def self.order_busy_desc
-#    true
+  def self.order_by_price
+    order :price
   end
 
   def large_crowd?
@@ -41,17 +41,13 @@ class Event < ApplicationRecord
   end
 
   def is_bargain?
-      price < 50
+      price < 10
   end
 
   def event_time_desc
-    dt1 = self.starts_at.to_date
-    dt2 = self.ends_at.to_date
-    tm1 = self.starts_at.to_time
-    tm2 = self.ends_at.to_time
-    result = tm1.to_s # + " " + tm1.to_s
     result = self.starts_at.strftime('%d-%m-%Y')
     if one_day_event?
+      # Should not occur with at least 24hr event constraint
       result += ", " + self.starts_at.strftime('%H:%M') +
         " to "
     else

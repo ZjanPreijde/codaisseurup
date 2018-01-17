@@ -31,17 +31,28 @@ RSpec.describe Event, type: :model do
       event5.valid?
       expect(event5.errors).to_not have_key(:description)
     end
+  end
 
+  # Add validation for starts_at / ends_at
+  describe "event period" do
+    let(:event1) { build :event, starts_at: 1.days.from_now, ends_at: 3.days.from_now }
+    let(:event2) { build :event, starts_at: 1.days.from_now, ends_at: 1.days.from_now }
+
+    it "is valid if event more than 24 hours" do
+      event1.valid?
+      expect(event1.errors).to_not have_key(:ends_at)
+    end
+
+    it "is not valid if event less than 24 hours" do
+      event2.valid?
+      expect(event2.errors).to have_key(:ends_at)
+    end
   end
 
   describe "#large_crowd?" do
-    # Start/End time validation is triggered :-(, init with valid values
-    let(:busy_event)      { create :event, capacity: 2_000,
-      starts_at: 1.days.from_now, ends_at: 3.days.from_now }
-    let(:non_busy_event)  { create :event, capacity: 20,
-      starts_at: 1.days.from_now, ends_at: 3.days.from_now }
-    let(:border_event)    { create :event, capacity: 100,
-      starts_at: 1.days.from_now, ends_at: 3.days.from_now }
+    let(:busy_event)      { build :event, capacity: 2_000 }
+    let(:non_busy_event)  { build :event, capacity: 20 }
+    let(:border_event)    { build :event, capacity: 100 }
     it "returns true if the capacity is larger than thresh hold" do
       expect(busy_event.large_crowd?).to eq(true)
       expect(non_busy_event.large_crowd?).to eq(false)

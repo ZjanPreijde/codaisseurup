@@ -9,8 +9,9 @@ FactoryBot.define do
     capacity          20
     includes_food     true
     includes_drinks   false
-    starts_at         Time.now
-    ends_at           Time.now
+    # Needed because of validation event time
+    starts_at         1.days.from_now
+    ends_at           3.days.from_now
     active            true
     user              { build(:user) }
 

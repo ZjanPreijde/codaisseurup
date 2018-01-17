@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   #     resources :events
   # end
   resources :events, except: [:destroy]
+  resources :profiles, only: [:new, :edit, :create, :update]
 
   devise_for :users
-
 
   # resources :events do
   #   resources :registrations, only: [:create]

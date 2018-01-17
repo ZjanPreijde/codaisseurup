@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user, removed as instructed in Reader
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :bio, presence: true

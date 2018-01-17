@@ -18,6 +18,10 @@ class Event < ApplicationRecord
     #   selft.includes_drinks = false
     #   self.active = true
   end
+  
+  def is_bargain?
+      price < 50
+  end
 
   def event_time_desc
     dt1 = self.starts_at.to_date

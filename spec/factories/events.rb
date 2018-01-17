@@ -13,7 +13,6 @@ FactoryBot.define do
     ends_at           Time.now
     active            true
     user              { build(:user) }
-    categories        []
 
     trait :active do
       active true

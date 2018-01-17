@@ -48,8 +48,14 @@
           <ul class="amenities">
             <li><%= !@event.includes_food ? ("<s>Food</s>").html_safe : "Food" %></li>
             <li><%= !@event.includes_drinks ? ("<del>Drinks</del>").html_safe : "Drinks" %></li>
-          </ul></p>
+          </ul>
+          </p>
           <p>
+          <label>Categories</label>
+          <% @categories.each do |category| %>
+            <span class="label label-success"><%= category.name %></span>
+          <% end %>
+          </p>
           <label>Status: </label>
           <%= !@event.active ? ("<del>Unpublished</del>").html_safe : "Published" %>
         </div>

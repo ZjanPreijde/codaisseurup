@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
+  has_and_belongs_to_many :categories
 
     # 'has_defaults' gem file, allows use of following :
     # has_defaults :name => "Enter name here", :description => "Enter description here"

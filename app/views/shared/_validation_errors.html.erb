@@ -1,0 +1,5 @@
+<!-- Something like this probably,
+  @event should be more generic though -->
+<% @event.errors.full_messages.each do |msg| %>
+  <p class="alert alert-danger" role="alert"><%= msg %></p>
+<% end %>

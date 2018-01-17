@@ -35,5 +35,4 @@ describe "shared/_navbar.html.erb" do
       expect(rendered).to have_content "Sign Up"
     end
   end
-
 end

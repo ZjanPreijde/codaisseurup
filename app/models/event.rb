@@ -9,16 +9,28 @@ class Event < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 500 }
+  validates :starts_at, presence: true
+  validates :ends_at, presence: true
+
+  validate :validate_dates
+  def validate_dates
+    time_between = ends_at.strftime("%s").to_i - starts_at.strftime("%s").to_i
+    if time_between < (24*60*60)
+      errors.add(:ends_at, " : End time must be at least 24 hours after start time")
+    end
+  end
 
   after_initialize :set_default_values
   def set_default_values
-    # Following overrides values entered through .create!()
-    #   self.name = "Enter name here"
-    #   self.description = "Enter description here"
-    #   self.price = 0
-    #   self.includes_food = false
-    #   selft.includes_drinks = false
-    #   self.active = true
+    # Set defaults for new record
+    self.name             = "Enter name here" if self.name.nil?
+    self.description      = "Enter description here" if self.description.nil?
+    self.price            = 0 if self.price.nil?
+    self.includes_food    = false if self.includes_food.nil?
+    self.includes_drinks  = false if self.includes_drinks.nil?
+    self.starts_at        = 1.days.from_now if self.starts_at.nil?
+    self.ends_at          = 5.days.from_now if self.ends_at.nil?
+    self.active           = true if self.active.nil?
   end
 
   def self.order_busy_desc

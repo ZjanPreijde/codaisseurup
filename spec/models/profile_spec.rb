@@ -6,9 +6,9 @@ RSpec.describe Profile, type: :model do
   describe ".by_initial" do
     subject { Profile.by_initial("S") }
 
-    let(:sander) { create :profile, first_name: "Sander" }
-    let(:stefan) { create :profile, first_name: "Stefan" }
-    let(:wouter) { create :profile, first_name: "Wouter" }
+    let!(:sander) { create :profile, first_name: "Sander" }
+    let!(:stefan) { create :profile, first_name: "Stefan" }
+    let!(:wouter) { create :profile, first_name: "Wouter" }
     # debugger
 
     it "returns the profiles that match the initial" do

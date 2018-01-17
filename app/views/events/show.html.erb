@@ -18,28 +18,20 @@
       <div class="panel-body">
         <!-- About -->
         <!-- <h4>About</h4> -->
-        <p><%= @event.description %></p>
-
-        <!-- Main Info -->
-        <!-- <h4>Main Info</h4> -->
+        <blockquote><%= @event.description %></blockquote>
+        <!-- Info part 1 -->
         <div class="col-md-6">
-          <p>
-            <label>Location:</label>
-            <%= @event.location %></p>
-          <p>
-            <label>When:</label>
-            <%= @event.event_time_desc %></p>
-          <p>
-            <label>Capacity:</label>
+          <p><label>Location:</label> <%= @event.location %></p>
+          <p><label>When:</label> <%= @event.event_time_desc %></p>
+          <p><label>Capacity:</label>
             <%= @event.capacity %>
             <%= @event.capacity > 1 ? "guests" : "guest" %></p>
-          <p>
-            <label>Host:</label>
+          <p><label>Host:</label>
             <%= @event.user.email %></p>
         </div>
 
+        <!-- Info part 2 -->
         <div class="col-md-6">
-          <!-- Amenities -->
           <p>
             <label>Price:</label> &euro;
             <%= @event.price %></p>
@@ -50,16 +42,21 @@
             <li><%= !@event.includes_drinks ? ("<del>Drinks</del>").html_safe : "Drinks" %></li>
           </ul>
           </p>
-          <p>
-          <label>Categories</label>
-          <% @categories.each do |category| %>
-            <span class="label label-success"><%= category.name %></span>
-          <% end %>
-          </p>
           <label>Status: </label>
           <%= !@event.active ? ("<del>Unpublished</del>").html_safe : "Published" %>
         </div>
-        <!-- Status -->
+
+        <!-- Info part 3 -->
+        <div class="col-md-12">
+          <div class="col-md-2" style="padding-left:0;">
+          <label>Categories</label>
+          </div>
+          <div class="col-md-10" style="padding-left:0;">
+            <% @categories.each do |category| %>
+              <span class="label label-success"><%= category.name %></span>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
 

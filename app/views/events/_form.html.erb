@@ -1,9 +1,11 @@
 <%= form_for @event, html: { multipart: true } do |f| %>
 
-<!-- Todo : use generic ./views/shared/_validation_errors.html.erb -->
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
 <% @event.errors.full_messages.each do |msg| %>
   <p class="alert alert-danger" role="alert"><%= msg %></p>
 <% end %>
+
 
 <div class="form-group">
   <label>Name</label>
@@ -34,12 +36,12 @@
 </div>
 
 <div class="form-group">
-  <label>Starts at</label>
+  <label>Starts at : </label><br/>
   <%= f.datetime_select :starts_at %>
 </div>
 
 <div class="form-group">
-  <label>Ends at</label>
+  <label>Ends at : </label><br/>
   <%= f.datetime_select :ends_at %>
 </div>
 
@@ -66,15 +68,16 @@
 <hr>
 
 <label>Publish this event?</label>
-
 <div class="form-group">
   <%= f.check_box :active %>
   Active
 </div>
+
 <div class="actions">
   <%= f.submit "Save", class: "btn btn-success" %>
   <%= link_to "Cancel", events_path, class: "btn btn-default" %>
 
 </div>
-
+</div> <!-- class = "col-md-8" -->
+</div> <!-- class = "row" -->
 <<% end %>

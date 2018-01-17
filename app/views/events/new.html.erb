@@ -1,9 +1,14 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    Add a new event for <%= @event.user.email %>
-  </div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Add a new event for
+        <%= @event.user.email %>
+      </div>
 
-  <div class="panel-body">
-    <%= render 'form' %>
+      <div class="panel-body">
+        <%= render 'form' %>
+      </div>
+    </div>
   </div>
 </div>

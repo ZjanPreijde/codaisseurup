@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
-  # belongs_to :user, removed as instructed in Reader
+  # belongs_to: Removed it as instructed in Reader, Rspec assoc test seems to need it
+  belongs_to :user
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :bio, presence: true

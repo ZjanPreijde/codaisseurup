@@ -1,19 +1,21 @@
 # rspec spec/models/user_spec.rb
+require 'rails_helper'
 
-describe "association with event" do
-  let(:user) { create :user }
-  let!(:event) { create :event, user: user }
-
-  it "has many events" do
-    event1 = user.events.new(name: "Great event")
-    event2 = user.events.new(name: "Awesome event")
-
-    expect(user.events).to include(event1)
-    expect(user.events).to include(event2)
+RSpec.describe User, type: :model do
+  # ...
+  describe "validations" do
+    # Shoulda Matcher style :
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:password) }
   end
 
-  it "deletes associated events" do
-    # shoulda-matcher
-    expect { user.destroy }.to change(Event, :count).by(-1)
+  describe 'association with event' do
+    # Shoulda Matcher style :
+    it { is_expected.to have_many :events }
+  end
+
+  describe 'association with profile' do
+    # Shoulda Matcher style :
+    it { is_expected.to have_one :profile }
   end
 end

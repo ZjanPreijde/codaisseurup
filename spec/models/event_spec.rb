@@ -2,21 +2,19 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  # ...
   describe "validations" do
+    # Shoulda Matcher style :
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:description) }
     it { is_expected.to validate_length_of(:description).is_at_most(500) }
   end
 
   describe "association with user" do
-    let(:user) { create :user }
+    # Shoulda Matcher style :
     it { is_expected.to belong_to :user}
   end
 
   describe "association with category" do
-#    let(:event) { create :event }
-
     # Shoulda Matcher style :
     it { is_expected.to have_and_belong_to_many :categories }
   end

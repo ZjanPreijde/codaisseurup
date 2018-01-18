@@ -9,8 +9,10 @@
 <% end %>
 
 <div class"row"="class" row""="row" "">
+
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-primary">
+
       <div class="panel-heading">
         <h4><%= @event.name %></h4>
       </div>
@@ -21,35 +23,43 @@
         <blockquote><%= @event.description %></blockquote>
         <!-- Info part 1 -->
         <div class="col-md-6">
-          <p><label>Location:</label> <%= @event.location %></p>
-          <p><label>When:</label> <%= @event.event_time_desc %></p>
-          <p><label>Capacity:</label>
+          <p>
+            <label>Location:</label>
+            <%= @event.location %></p>
+          <p>
+            <label>When:</label>
+            <%= @event.event_time_desc %></p>
+          <p>
+            <label>Capacity:</label>
             <%= @event.capacity %>
             <%= @event.capacity > 1 ? "guests" : "guest" %></p>
-          <p><label>Host:</label>
+          <p>
+            <label>Host:</label>
             <%= @event.user.email %></p>
         </div>
 
         <!-- Info part 2 -->
         <div class="col-md-6">
           <p>
-            <label>Price:</label> &euro;
+            <label>Price:</label>
+            &euro;
             <%= @event.price %></p>
           <p>
-          <label>Amenities:</label>
-          <ul class="amenities">
-            <li><%= !@event.includes_food ? ("<s>Food</s>").html_safe : "Food" %></li>
-            <li><%= !@event.includes_drinks ? ("<del>Drinks</del>").html_safe : "Drinks" %></li>
-          </ul>
+            <label>Amenities:</label>
+            <ul class="amenities">
+              <li><%= !@event.includes_food ? ("<s>Food</s>").html_safe : "Food" %></li>
+              <li><%= !@event.includes_drinks ? ("<del>Drinks</del>").html_safe : "Drinks" %></li>
+            </ul>
           </p>
-          <label>Status: </label>
+          <label>Status:
+          </label>
           <%= !@event.active ? ("<del>Unpublished</del>").html_safe : "Published" %>
         </div>
 
         <!-- Info part 3 -->
         <div class="col-md-12">
           <div class="col-md-2" style="padding-left:0;">
-          <label>Categories</label>
+            <label>Categories</label>
           </div>
           <div class="col-md-10" style="padding-left:0;">
             <% @categories.each do |category| %>
@@ -58,27 +68,19 @@
           </div>
         </div>
 
-        <!-- Info part 3 -->
-        <div class="col-md-12">
         <!-- Photos -->
-        <div class="col-md-12" style="padding-left:0;">
-          <label>Photos</label>
-        </div>
-        <% @event.photos.each do |photo| %>
-        <div class="col-md-2">
-          button
-        </div>
-          <div class="col-md-10">
-            <%= image_tag photo.image.thumbnail %>
+        <div class="col-md-12">
+          <div id="photos">
+            <%= render 'photos/list' %>
           </div>
-        <% end %>
-      </div>
+        </div>
 
       </div>
     </div>
-
-    <%= link_to "Update", edit_event_path(@event), class: "btn btn-default" %>
-    <%= link_to "Back", events_path, class: "btn btn-default" %>
-
   </div>
+
+  <%= link_to "Update", edit_event_path(@event), class: "btn btn-default" %>
+  <%= link_to "Back", events_path, class: "btn btn-default" %>
+
+</div>
 </div>

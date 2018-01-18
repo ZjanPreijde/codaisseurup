@@ -1,0 +1,17 @@
+<!-- app/views/photos/_list.html.erb -->
+
+<% if @photos %>
+  <div class = "col-md-12">
+    <% @photos.each do |photo| %>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-md-12">
+              <%= image_tag photo.image.thumbnail %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

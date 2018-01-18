@@ -28,7 +28,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @photos = @event.photos
+  end
 
   def update
     if @event.update(event_params)

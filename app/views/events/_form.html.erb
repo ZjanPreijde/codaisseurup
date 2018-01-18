@@ -63,8 +63,20 @@
   </div>
 <% end %>
 
-<hr>
+<label>Photo's</label>
+<div class="form-group">
+  <span class="btn btn-default">
+    Upload Photos
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+  </span>
+</div>
 
+
+<div id="photos">
+  <%= render 'photos/list_edit' %>
+</div>
+
+<hr>
 <label>Publish this event?</label>
 <div class="form-group">
   <%= f.check_box :active %>
@@ -73,6 +85,10 @@
 
 <div class="actions">
   <%= f.submit "Save", class: "btn btn-success" %>
-  <%= link_to "Cancel", events_path, class: "btn btn-default" %>
+  <% if @event.persisted? # Editing %>
+    <%= link_to "Cancel", @event, class: "btn btn-default" %>
+  <% else # Adding %>
+    <%= link_to "Cancel", events_path, class: "btn btn-default" %>
+  <% end %>
 </div>
 <% end %>

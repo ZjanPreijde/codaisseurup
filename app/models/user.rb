@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :events, dependent: :destroy
-  has_one :profile, dependent: :destroy
+  # has_one :profile, dependent: :destroy
 
   # Validations
   validates :email, presence: true

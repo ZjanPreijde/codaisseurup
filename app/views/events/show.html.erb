@@ -57,6 +57,23 @@
             <% end %>
           </div>
         </div>
+
+        <!-- Info part 3 -->
+        <div class="col-md-12">
+        <!-- Photos -->
+        <div class="col-md-12" style="padding-left:0;">
+          <label>Photos</label>
+        </div>
+        <% @event.photos.each do |photo| %>
+        <div class="col-md-2">
+          button
+        </div>
+          <div class="col-md-10">
+            <%= image_tag photo.image.thumbnail %>
+          </div>
+        <% end %>
+      </div>
+
       </div>
     </div>
 

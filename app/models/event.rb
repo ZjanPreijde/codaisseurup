@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :categories
+  has_many :photos
   # An event equal to or greater than thresh hold is considered large
   THRESHOLD_LARGE_EVENT_INCLUDE = 100
 

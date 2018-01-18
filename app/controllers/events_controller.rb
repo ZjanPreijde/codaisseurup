@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   def show
     @categories = @event.categories
+    @photos = @event.photos
   end
 
   def new
@@ -18,7 +19,10 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
 
     if @event.save
-      redirect_to @event, notice: 'Event created'
+      image_params.each do |image|
+        @event.photos.create(image: image)
+      end
+      redirect_to @event, notice: 'Event successfully created'
     else
       render :new
     end
@@ -28,7 +32,10 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to @event, notice: 'Event updated'
+      image_params.each do |image|
+        @event.photos.create(image: image)
+      end
+      redirect_to @event, notice: 'Event successfully updated'
     else
       render :edit
     end
@@ -48,5 +55,10 @@ class EventsController < ApplicationController
         :includes_food, :includes_drinks,
         :starts_at, :ends_at, :active, category_ids: []
       )
+  end
+  private
+
+  def image_params
+    params[:images].present? ? params.require(:images) : []
   end
 end

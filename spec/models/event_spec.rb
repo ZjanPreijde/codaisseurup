@@ -9,6 +9,18 @@ RSpec.describe Event, type: :model do
     it { is_expected.to validate_length_of(:description).is_at_most(500) }
   end
 
+  describe "association with user" do
+    let(:user) { create :user }
+    it { is_expected.to belong_to :user}
+  end
+
+  describe "association with category" do
+#    let(:event) { create :event }
+
+    # Shoulda Matcher style :
+    it { is_expected.to have_and_belong_to_many :categories }
+  end
+
   # Add validation for starts_at / ends_at,
   #  how to do this with Shoulda Matcher?
   describe "event period" do
@@ -51,7 +63,7 @@ RSpec.describe Event, type: :model do
     let!(:event2) { create :event, price: 10 }
     let!(:event3) { create :event, price: 50 }
 
-    it "returns a sorted array of rooms by prices" do
+    it "returns a sorted array of events by prices" do
       # note that they should not come out in the order that they were created
       expect(Event.order_by_price).to eq([event2, event1, event3])
     end

@@ -32,18 +32,22 @@ class Event < ApplicationRecord
     self.active           = true                      if self.active.nil?
   end
 
+  # Class method
   def self.order_by_price
     order :price
   end
 
+  # Instance method
   def large_crowd?
     capacity >= THRESHOLD_LARGE_EVENT_INCLUDE
   end
 
+  # Instance method
   def is_bargain?
       price < 10
   end
 
+  # Instance method
   def event_time_desc
     result = self.starts_at.strftime('%d-%m-%Y')
     if one_day_event?
@@ -57,10 +61,12 @@ class Event < ApplicationRecord
     result += self.ends_at.strftime('%H:%M')
   end
 
+  # Instance method
   def one_day_event?
     return self.starts_at.to_date == self.ends_at.to_date
   end
 
+  # Instance method
   def get_threshold_large_event
     THRESHOLD_LARGE_EVENT_INCLUDE
   end

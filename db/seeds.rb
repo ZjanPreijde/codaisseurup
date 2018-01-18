@@ -36,6 +36,10 @@ peter = User.create!(
   password: '123456'
 )
 
+# Seed profile
+Profile.create!(first_name: "Zjan", last_name: "Preijde",
+   bio: "I have done many things in many years", user: zjan)
+
 # Seed events
 event_1 = Event.create!(
   name: 'Vreten!',

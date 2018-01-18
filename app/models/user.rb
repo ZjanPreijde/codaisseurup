@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   # Instance method
   def full_name
-#    return profile.full_name if profile?
+    return profile.full_name if profile?
     email
   end
 

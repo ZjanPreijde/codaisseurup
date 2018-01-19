@@ -9,11 +9,20 @@
   </head>
 
   <body>
+    <!-- Render navbar -->
     <%= render "shared/navbar" %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!-- Notices / alerts -->
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center center-text">
+        <!-- Where the hell do these get there information from? -->
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+    </div>
 
+    <!-- erb yield -->
     <%= yield %>
+
   </body>
 </html>

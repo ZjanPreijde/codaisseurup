@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
     if @event.user.id == current_user.id
       photo.destroy
 
-      redirect_to edit_event_path(@event), notice: "Photo successfully removed"
+      redirect_to event_path(@event), notice: "Photo successfully removed"
     else
       redirect_to @event, notice: "Cannot delete that photo"
     end

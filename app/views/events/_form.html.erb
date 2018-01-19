@@ -1,7 +1,8 @@
 <%= form_for @event, html: { multipart: true } do |f| %>
-
-<% @event.errors.full_messages.each do |msg| %>
-  <p class="alert alert-danger" role="alert"><%= msg %></p>
+<% if @event.errors > 0 %>
+  <% @event.errors.full_messages.each do |msg| %>
+    <p class="alert alert-danger" role="alert"><%= msg %></p>
+  <% end %>
 <% end %>
 
 
@@ -63,20 +64,15 @@
   </div>
 <% end %>
 
-<label>Photo's</label>
-<div class="form-group">
-  <span class="btn btn-default">
-    Upload Photos
-    <%= file_field_tag "images[]", type: :file, multiple: true %>
-  </span>
-</div>
-
-
-<div id="photos">
-  <%= render 'photos/list_edit' %>
-</div>
+<% if false && @event.persisted? # Don't show photo's on new page. Show on edit page?  %>
+  <label>Photo's</label>
+  <div id="photos">
+    <%= render 'photos/list' %>
+  </div>
+<% end %>
 
 <hr>
+
 <label>Publish this event?</label>
 <div class="form-group">
   <%= f.check_box :active %>
